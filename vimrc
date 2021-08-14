@@ -121,6 +121,7 @@ set showfulltag
 set listchars=tab:▸\ ,eol:¬
 set list
 
+
 " Auto commands
 "=============================================================================
 " Automatically rebalance windows on vim resize
