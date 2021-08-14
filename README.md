@@ -10,7 +10,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
-*repository theme goes into the file below
+*repository theme goes into the file below*
 vim .oh-my-zsh/custom/cjt.zsh-theme
 
 tmux-mem-cpu-load
