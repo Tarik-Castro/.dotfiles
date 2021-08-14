@@ -6,6 +6,13 @@ git clone git@github.com:Tarik-Castro/dotfiles.git
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+*repository theme goes into the file below
+vim .oh-my-zsh/custom/cjt.zsh-theme
+
 tmux-mem-cpu-load
 
 cowfortune
