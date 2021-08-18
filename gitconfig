@@ -1,42 +1,43 @@
 [color]
-    ui = true
+	ui = true
 [user]
-    name = Tarik-Castro
-    email = tarik-castro@gmail.com
+	name = Tarik-Castro
+	email = tarik-castro@gmail.com
 [core]
-    editor = vim
-    pager = less -F -X
+	editor = vim
+	pager = less -F -X
 [init]
-    defaultBranch = master
+	defaultBranch = master
 	templatedir = ~/.git_template
 [alias]
-    aa = add --all
-    b = branch
-    browse = !hub browse
-    ca = commit --amend
-    car = commit --amend --no-edit
-    ci = commit
-    compare = !hub compare
-    co = checkout
-    df = diff --word-diff --color-words
-    full-commit = !git cat-file -p $(git rev-parse HEAD)
-    glog = "!f() { git log --grep $1 -E -i; }; f"
-    issues = !hub browse -- issues
-    mup = !git checkout master && git pull && git checkout -
-    pl = pull
-    pom = push -u origin master
-    ps = push
-    sl = log --oneline --decorate --graph -20
-    sla = log --oneline --decorate --graph --all -20
-    s = status --short
-    unstage = reset
-    uncommit = reset --soft HEAD^
-    upstream = rev-parse -abbrev-ref --symbolic-full-name @{u}
-    st = status --short
-    conflicted = !vim +Conflicted
-[push]
-    default = upstream
+	aa = add --all
+	b = branch
+	browse = !hub browse
+	ca = commit --amend
+	car = commit --amend --no-edit
+	ci = commit
+	compare = !hub compare
+	co = checkout
+	df = diff --word-diff --color-words
+	full-commit = !git cat-file -p $(git rev-parse HEAD)
+	glog = "!f() { git log --grep $1 -E -i; }; f"
+	issues = !hub browse -- issues
+	mup = !git checkout master && git pull && git checkout -
+	pl = pull
+	pom = push -u origin master
+	ps = push
+	sl = log --oneline --decorate --graph -20
+	sla = log --oneline --decorate --graph --all -20
+	s = status --short
+	unstage = reset
+	uncommit = reset --soft HEAD^
+	upstream = rev-parse -abbrev-ref --symbolic-full-name @{u}
+	st = status --short
+	conflicted = !vim +Conflicted
+	clf = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
+	his = log --oneline -- [push]
+	default = upstream
 [merge]
-    ff = only
+	; ff = only
 [fetch]
-    prune = true
+	prune = true
