@@ -120,8 +120,7 @@ set showfulltag
 " set patchmode=.bak
 set listchars=tab:▸\ ,eol:¬
 set list
-
-
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " Auto commands
 "=============================================================================
 " Automatically rebalance windows on vim resize
@@ -219,6 +218,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
 
 call plug#end()
 
