@@ -219,6 +219,7 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
