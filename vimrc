@@ -223,7 +223,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'godlygeek/tabular'
-Plug 'masukomi/vim-markdown-folding'
+" Plug 'masukomi/vim-markdown-folding'
 
 call plug#end()
 
