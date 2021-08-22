@@ -97,7 +97,7 @@ set number                      " Line numbers
 set relativenumber              " Relative numbers
 set nocompatible                " Don't maintain compatibilty with Vi.
 set hidden                      " Allow buffer change w/o saving
-set nohlsearch                  " No highlight all while I'm searching
+" set nohlsearch                  " No highlight all while I'm searching
 set incsearch                   " Highlight while I'm typing
 set smartindent
 set lazyredraw                  " Don't update while executing macros
@@ -121,6 +121,8 @@ set showfulltag
 set listchars=tab:▸\ ,eol:¬
 set list
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+
 " Auto commands
 "=============================================================================
 " Automatically rebalance windows on vim resize
@@ -217,6 +219,7 @@ Plug 'mbbill/undotree'
 " Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'nelstrom/vim-visual-star-search'
 Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
@@ -365,3 +368,16 @@ if has("autocmd")
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
+
+" Scripts
+" ============================================================================
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
