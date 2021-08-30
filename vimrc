@@ -382,3 +382,14 @@ function! QuickfixFilenames()
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
+" Custom commands
+" =========================================================================== 
+" Error fixs
+nnoremap <silent> <Plug>TransposeCharacters xp
+\:call repeat#set("\<Plug>TransposeCharacters")<CR>
+nmap cp <Plug>TransposeCharacters
+
+" Mappings that accept a count
+nnoremap \ n.
+" nnoremap \ @='n.'<CR>
+nnoremap \ :normal n.<CR>
