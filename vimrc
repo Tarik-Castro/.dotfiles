@@ -147,6 +147,9 @@ augroup Text
 	autocmd BufWinEnter text set nocolorcolumn
 augroup END
 
+" Vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
+
 " nnoremap
 "=============================================================================
 " zoom a vim pane, <C-w>= to re-balance
@@ -227,6 +230,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-abolish'
 Plug 'godlygeek/tabular'
+Plug 'tommcdo/vim-exchange'
+Plug 'SirVer/ultisnips'
 " Plug 'masukomi/vim-markdown-folding'
 
 call plug#end()
@@ -393,3 +398,13 @@ nmap cp <Plug>TransposeCharacters
 nnoremap \ n.
 " nnoremap \ @='n.'<CR>
 nnoremap \ :normal n.<CR>
+
+" Conversion from html to markdown and vice-versa
+nnoremap <leader>gq :%!pandoc -f html -t markdown \| pandoc -f markdown -t html<CR>
+vnoremap <leader>gq :!pandoc -f html -t markdow \| pandoc -f markdown -t html<CR>
+
+if has("autocmd")
+	let pandoc_pipeline = "pandoc --from=html --to=markdown"
+	let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+	autocmd Filetype html let &l:formatprg=pandoc_pipeline
+ endif
