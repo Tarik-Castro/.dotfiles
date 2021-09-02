@@ -78,10 +78,10 @@ nmap k gk
 " nmap <S-]> >>
 
 " Visual mappings
-" ============================================================================ 
+" ============================================================================
 " Text-mate select indent style
 vmap <C-[> <gv
-vmap <C-]> >gv 
+vmap <C-]> >gv
 
 " Toggle spell checking on and off with 'spc s'
 nmap <silent> <leader>or :set spell!<CR>
@@ -148,7 +148,10 @@ augroup Text
 augroup END
 
 " Vertically center document when entering insert mode
-autocmd InsertEnter * norm zz
+" autocmd InsertEnter * norm zz
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 
 " nnoremap
 "=============================================================================
@@ -177,7 +180,7 @@ nnoremap Q 0yt=A <C-r>=<C-r>"<CR><Esc>
 nnoremap <silent> <F4> :call <SID>StripTrailingWhiteSpaces()<CR>
 
 " inoremap settings
-" ============================================================================ 
+" ============================================================================
 " Map tab for ruby-vim omni-completion
 inoremap <tab> <C-x><C-o>
 
@@ -233,6 +236,7 @@ Plug 'godlygeek/tabular'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
 " Plug 'masukomi/vim-markdown-folding'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
@@ -292,7 +296,7 @@ function <SID>StripTrailingWhiteSpaces()
     call cursor(l, c)
 endfunction
 
-" User-defined functions 
+" User-defined functions
 function! Random()
     return str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
 endfunction
@@ -388,7 +392,7 @@ function! QuickfixFilenames()
 endfunction
 
 " Custom commands
-" =========================================================================== 
+" ===========================================================================
 " Error fixs
 nnoremap <silent> <Plug>TransposeCharacters xp
 \:call repeat#set("\<Plug>TransposeCharacters")<CR>
