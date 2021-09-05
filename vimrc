@@ -44,6 +44,9 @@ let ruby_spellcheck_strings = 1
 
 let g:lightline = { 'colorscheme': 'powerline', }
 
+" Vimwiki auto generate
+let g:vimwiki_list = [{'auto_diary_index': 1}]
+
 "  Normal mode mappings
 "=============================================================================
 " Easy access to the start of the line
@@ -121,7 +124,9 @@ set showfulltag
 set listchars=tab:▸\ ,eol:¬
 set list
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
+" set statusline=+=%{wordcount().words}\ words
+set statusline+=\ w:%{WordCount()},
+set laststatus=2 " show the statusline
 
 " Auto commands
 "=============================================================================
@@ -187,6 +192,9 @@ inoremap <tab> <C-x><C-o>
 " Tabular function
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
+" tnoremap settings
+" ============================================================================
+
 " Command aliases for typoed commands (accidentally holding shift too long)
 "=============================================================================
 command! Q q " Bind :Q to :q
@@ -216,7 +224,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-ruby/vim-ruby'
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 " Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -237,6 +245,9 @@ Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
 " Plug 'masukomi/vim-markdown-folding'
 Plug 'lifepillar/vim-solarized8'
+Plug 'machakann/vim-highlightedyank'
+Plug 'chrisbra/Colorizer'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -341,21 +352,33 @@ function! s:align()
   endif
 endfunction
 
+"new in vim 7.4.1042
+let g:word_count=wordcount().words
+function WordCount()
+    if has_key(wordcount(),'visual_words')
+        let g:word_count=wordcount().visual_words."/".wordcount().words " count selected words
+    else
+        let g:word_count=wordcount().cursor_words."/".wordcount().words " or shows words 'so far'
+    endif
+    return g:word_count
+endfunction
+
+
 " Conditionals
 " ============================================================================
-" Persistent Undotree settings
-if has("persistent_undo")
-	let target_path = expand('~/.undodir')
+" " Persistent Undotree settings
+" if has("persistent_undo")
+" 	let target_path = expand('~/.undodir')
 
-	" Create the directory and any parent directories
-	" if the location does not exist.
-	if !isdirectory(target_path)
-		call mkdir(target_path, "p", 0700)
-	endif
+" 	" Create the directory and any parent directories
+" 	" if the location does not exist.
+" 	if !isdirectory(target_path)
+" 		call mkdir(target_path, "p", 0700)
+" 	endif
 
-	let &undodir=target_path
-	set undofile
-endif
+" 	let &undodir=target_path
+" 	set undofile
+" endif
 
 " Restore cursor position
 autocmd BufReadPost *
@@ -411,4 +434,28 @@ if has("autocmd")
 	let pandoc_pipeline = "pandoc --from=html --to=markdown"
 	let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
 	autocmd Filetype html let &l:formatprg=pandoc_pipeline
- endif
+endif
+
+" WPM
+fun! s:wpm() abort
+    " Start!
+    if get(b:, 'wpm_start', 0) is 0
+        let b:wpm_start = [reltime(), wordcount()]
+    " Finish
+    else
+        let l:time = reltime(b:wpm_start[0])
+        let l:words = wordcount()['words'] - b:wpm_start[1]['words']
+        unlet b:wpm_start
+        echom printf('%s WPM; in %s seconds you typed %s words',
+            \ l:words / max([1, l:time[0] / 60]), l:time[0], l:words)
+    endif
+endfun
+
+command! WPM call s:wpm()
+
+" Optional: automatically do this when starting/leaving insert mode.
+augroup wpm
+    autocmd!
+    autocmd InsertEnter * :WPM
+    autocmd InsertLeave * :WPM
+augroup end
