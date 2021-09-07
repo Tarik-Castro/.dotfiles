@@ -47,7 +47,11 @@ let g:lightline = { 'colorscheme': 'powerline', }
 " Vimwiki auto generate
 let g:vimwiki_list = [{'auto_diary_index': 1}]
 
-"  Normal mode mappings
+" Perl support
+let g:perl_host_prog = '/usr/bin/perl'
+
+
+" Normal mode mappings
 "=============================================================================
 " Easy access to the start of the line
 " nmap 0 ^
