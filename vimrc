@@ -215,45 +215,48 @@ command! -nargs=* Wrap set wrap linebreak nolist
 
 " Vim-Plug stuff
 "=============================================================================
-call plug#begin('~/.vim/plugged')
+packadd minpac
+call minpac#init()
 
-Plug 'christoomey/vim-tmux-runner'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'christoomey/vim-conflicted'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'thoughtbot/vim-rspec'
-Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-ruby/vim-ruby'
-" Plug 'mbbill/undotree'
-" Plug 'itchyny/lightline.vim'
-" Plug 'vim-airline/vim-airline'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'kana/vim-textobj-user'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-abolish'
-Plug 'godlygeek/tabular'
-Plug 'tommcdo/vim-exchange'
-Plug 'SirVer/ultisnips'
-" Plug 'masukomi/vim-markdown-folding'
-Plug 'lifepillar/vim-solarized8'
-Plug 'machakann/vim-highlightedyank'
-Plug 'chrisbra/Colorizer'
-Plug 'vimwiki/vimwiki'
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('christoomey/vim-tmux-runner')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('christoomey/vim-conflicted')
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('junegunn/goyo.vim')
+call minpac#add('thoughtbot/vim-rspec')
+call minpac#add('preservim/nerdtree')
+call minpac#add('ryanoasis/vim-devicons')
+call minpac#add('tiagofumo/vim-nerdtree-syntax-highlight')
+call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('vim-ruby/vim-ruby')
+" call mipac#add('mbbill/undotree')
+" call mipac#add('itchyny/lightline.vim')
+" call mipac#add('vim-airline/vim-airline')
+call minpac#add('nelstrom/vim-textobj-rubyblock')
+call minpac#add('nelstrom/vim-visual-star-search')
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-bundler')
+call minpac#add('tpope/vim-rake')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-rhubarb')
+call minpac#add('tpope/vim-abolish')
+call minpac#add('godlygeek/tabular')
+call minpac#add('tommcdo/vim-exchange')
+call minpac#add('SirVer/ultisnips')
+" call minpac#add('masukomi/vim-markdown-folding')
+call minpac#add('lifepillar/vim-solarized8')
+call minpac#add('machakann/vim-highlightedyank')
+call minpac#add('chrisbra/Colorizer')
+call minpac#add('vimwiki/vimwiki')
 
-call plug#end()
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#update()
 
 " RSpec.vim mappings (map settings)
 "=============================================================================
