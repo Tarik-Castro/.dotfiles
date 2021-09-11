@@ -1,6 +1,3 @@
-# Cowfortune prompt
-[[ "$PS1"  ]] && echo -e "\e[00;33m$(/usr/bin/fortune)\e[00m"
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/etbcf/.oh-my-zsh"
 
@@ -70,5 +67,5 @@ function trash() { mv $1 ~/.Trash  }
 function mkcd() { mkdir $1 && cd $1  }
 function mkgit() { mkdir $1 && cd $1 && git init  }
 function mkclone() { git clone $1 && cd $( echo "$1" | sed -E 's|.*/(.*).git$|\1|'  )  }
-
-export TERM=tmux-256color
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
