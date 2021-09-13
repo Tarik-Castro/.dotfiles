@@ -2,7 +2,7 @@
 
 ## Installation
 
-git clone git@github.com:Tarik-Castro/dotfiles.git
+git clone git@github.com:Tarik-Castro/.dotfiles.git
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
