@@ -266,7 +266,7 @@ Plug 'SirVer/ultisnips'
 Plug 'machakann/vim-highlightedyank'
 Plug 'chrisbra/Colorizer'
 Plug 'vimwiki/vimwiki'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -494,18 +494,18 @@ augroup wpm
 augroup end
 
 " Coc completion popup
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 " solargraph settings
-let g:coc_global_extensions = ['coc-solargraph']
+" let g:coc_global_extensions = ['coc-solargraph']
 
 
