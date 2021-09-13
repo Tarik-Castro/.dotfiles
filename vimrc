@@ -5,13 +5,22 @@
 " Editor settings
 "=============================================================================
 syntax on
+
 filetype plugin on
-set nocompatible
 filetype on
 filetype indent on
+
 highlight SpecialKey ctermfg=8
 highlight NonText ctermfg=8
 
+hi CursorLine   cterm=NONE ctermbg=254 ctermfg=NONE
+
+" syntax enable
+
+" colorscheme solarized
+
+" set background=light
+" colorscheme solarized8
 
 runtime macros/matchit.vim
 
@@ -131,6 +140,11 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " set statusline=+=%{wordcount().words}\ words
 set statusline+=\ w:%{WordCount()},
 set laststatus=2 " show the statusline
+set cursorcolumn
+set cursorline
+set background=light
+set nocompatible
+
 
 " Auto commands
 "=============================================================================
@@ -247,11 +261,12 @@ Plug 'tpope/vim-abolish'
 Plug 'godlygeek/tabular'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
-" Plug ('masukomi/vim-markdown-folding'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'masukomi/vim-markdown-folding'
+" Plug 'lifepillar/vim-solarized8'
 Plug 'machakann/vim-highlightedyank'
 Plug 'chrisbra/Colorizer'
 Plug 'vimwiki/vimwiki'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -356,7 +371,7 @@ function! s:align()
   endif
 endfunction
 
-"new in vim 7.4.1042
+" new in vim 7.4.1042
 let g:word_count=wordcount().words
 function WordCount()
     if has_key(wordcount(),'visual_words')
@@ -404,6 +419,20 @@ if has("autocmd")
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
+endif
+
+" Cursor highlight
+if has('nvim')
+	hi! link TermCursor Cursor
+	hi! TermCursorNC ctermfg=15 guifg=#fdf6e3 ctermbg=14 guibg=#93a1a1 cterm=NONE gui=NONE
+endif
+
+if has('nvim')
+	tnoremap <expr> <A-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+endif
+
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
 endif
 
 " Scripts
@@ -463,3 +492,20 @@ augroup wpm
     autocmd InsertEnter * :WPM
     autocmd InsertLeave * :WPM
 augroup end
+
+" Coc completion popup
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" solargraph settings
+let g:coc_global_extensions = ['coc-solargraph']
+
+

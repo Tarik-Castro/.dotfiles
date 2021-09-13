@@ -9,6 +9,7 @@ alias ls="ls --color"
 alias df="df -h"
 alias du="du -cksh"
 alias v="vim"
+alias n="nvim"
 alias vs="vim ~/.vimrc"
 alias sz="source ~/.zshrc"
 alias zs="vim ~/.zshrc"
@@ -22,4 +23,4 @@ alias \$=''
 alias dotfiles="cd ~/.dotfiles"
 
 # Global aliases
-alias -g G="| grep " 
+alias -g G="| grep "
