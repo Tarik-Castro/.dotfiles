@@ -1,7 +1,6 @@
 "=============================================================================
 "~.vimrc~
 "=============================================================================
-
 " Editor settings
 "=============================================================================
 syntax on
@@ -10,10 +9,11 @@ filetype plugin on
 filetype on
 filetype indent on
 
-highlight SpecialKey ctermfg=8
-highlight NonText ctermfg=8
+highlight SpecialKey guifg=#4a4a59
+highlight NonText guifg=#4a4a59
 
-hi CursorLine   cterm=NONE ctermbg=254 ctermfg=NONE
+hi CursorColumn cterm=NONE ctermbg=0 ctermfg=NONE
+hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE
 
 " syntax enable
 
@@ -135,14 +135,13 @@ set showfulltag
 " set backup
 " set patchmode=.bak
 set listchars=tab:▸\ ,eol:¬
-set list
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " set statusline=+=%{wordcount().words}\ words
 set statusline+=\ w:%{WordCount()},
 set laststatus=2 " show the statusline
 set cursorcolumn
 set cursorline
-set background=light
+set background=dark
 set nocompatible
 
 
@@ -266,7 +265,7 @@ Plug 'SirVer/ultisnips'
 Plug 'machakann/vim-highlightedyank'
 Plug 'chrisbra/Colorizer'
 Plug 'vimwiki/vimwiki'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -494,18 +493,18 @@ augroup wpm
 augroup end
 
 " Coc completion popup
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " solargraph settings
-" let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['coc-solargraph']
 
 
